@@ -15,10 +15,62 @@ ts.plot(x2)
 acf(x2, type = 'correlation')
 acf(x2, type = 'partial')
 
+
+#################################################################################
+#Option I: read from excel:
 #FIT and test real data model, set as template, need discuss by customer
 POS_Data <- read_excel("C:/Users/zheng/Downloads/MAV POS data.xlsx")
 SDM_POS <- filter(POS_Data, Customer == 'SDM')
 WM_POS <- filter(POS_Data, Customer == 'WM CA')
+
+
+##################################################################################
+# Option II: Load using SQL database
+library(DBI)
+library(RSQLite)
+
+# database connection
+con <- dbConnect(RSQLite::SQLite(), dbname = "POS.db")
+
+#join tables using UPC
+query <- "
+  SELECT
+    p.UPC,
+    p.product_name,
+    p.price,
+    s.sales_quantity,
+    s.sales_date,
+    c.Customer,
+    c.currency
+  FROM
+    products AS p
+  JOIN
+    sales AS s
+  ON
+    p.UPC = s.UPC
+  JOIN
+    customer AS c
+  ON
+    s.customer_id = c.customer_id
+"
+
+# Query the joined data from the database
+POS_Data <- dbGetQuery(con, query)
+
+#Close database connection
+dbDisconnect(con)
+
+# View the first few rows of the data
+head(POS_Data)
+
+
+#FIT and test real data model, set as template, need discuss by customer
+SDM_POS <- filter(POS_Data, Customer == 'SDM')
+WM_POS <- filter(POS_Data, Customer == 'WM CA')
+
+
+
+
 ##############################################################################################
 #About 4327OIL OF MOROCCO MASK TRTMENT in SDM
 x1 = SDM_POS$`621732704327`
