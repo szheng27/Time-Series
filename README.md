@@ -3,6 +3,7 @@ Upload previous work
 
 
 This repository contains multiple projects focused on different time series analysis models:
+This version provides a brief overview of each project and includes necessary setup instructions while noting that key insights and sensitive data are not included.
 
 ## Projects
 
@@ -30,4 +31,4 @@ This repository contains multiple projects focused on different time series anal
 
 - This repository contains code only. Key insights and potentially sensitive data are not included.
 
-This version provides a brief overview of each project and includes necessary setup instructions while noting that key insights and sensitive data are not included.
+
