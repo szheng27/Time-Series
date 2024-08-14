@@ -1,9 +1,11 @@
 # Time-Series
 Upload previous work
 
+This version provides a brief overview of each project and includes necessary setup instructions while noting that key insights and sensitive data are not included.
 
 This repository contains multiple projects focused on different time series analysis models:
-This version provides a brief overview of each project and includes necessary setup instructions while noting that key insights and sensitive data are not included.
+
+
 
 ## Projects
 
